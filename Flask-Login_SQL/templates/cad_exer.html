@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cad_exercicio</title>
+</head>
+<body>
+    <h1>
+        Cadastro de Exercicio
+    </h1>  
+    <form action="{{url_for('cad_exer')}}" method="post">
+        <input type="text" name="nome_exer" placeholder="Nome do Exercicio">
+        <input type="text" name="descricao" placeholder="Descrição">
+        <input type="string" name="matricula" placeholder="matricula">
+        <button>Enviar</button>
+    </form> 
+</body>
+</html>
