@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Livros</title>
+    <style>
+        body {
+            background-color:plum;
+            font-family: 'Times New Roman', Times, serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .actions {
+            text-align: center;
+        }
+        .actions button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        a{
+            color:black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Livros</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Editora</th>
+                <th>Adicionado por</th>
+                <th>Status</th>
+                <th class="actions">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for livro in livros %}
+                <tr>
+                    <td>{{ livro.titulo }}</td>
+                    <td>{{ livro.autor }}</td>
+                    <td>{{ livro.editora }}</td>
+                    <td>{{ livro.usuario.nome }}</td>
+                    <td>
+                        {% if livro.usuarios_locadores %}
+                            Emprestado para {{ livro.usuarios_locadores[0].nome }}
+                        {% else %}
+                            Disponível
+                        {% endif %}
+                    </td>
+                    <td class="actions">
+                        {% if not livro.usuarios_locadores %}
+                            <form action="{{ url_for('locar_livro', livro_id=livro.id) }}" method="POST">
+                                <button type="submit">Locar</button>
+                            </form>
+                        {% else %}
+                            <form action="{{ url_for('locar_livro', livro_id=livro.id) }}" method="POST">
+                                <button type="submit">Locar</button>
+                            </form>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{{ url_for('register_books') }}">ADICIONAR NOVO LIVRO</a> | <a href="{{url_for('logout')}}">LOGOUT</a>
+</body>
+</html>

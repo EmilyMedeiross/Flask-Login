@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       body{
+        background-color:plum;
+        font-family: 'Times New Roman', Times, serif;
+
+       }
+
+       a{
+            color:black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="{{url_for('register_books')}}" method='post' class="registro-form">
+            <h2>Registre um novo Livro </h2>
+
+            <label for="titulo">Titulo</label>
+            <input type="text" id="titulo" name="titulo" required>
+            
+            <label for="autor">Autor</label>
+            <input type="text" id="autor" name="autor" required>
+
+            <label for="editora">Editora</label>
+            <input type="text" id="editora" name="editora" required>
+            
+            <button type="submit">Registrar</button>
+        </form>
+    </div><Br>
+    <a href="{{ url_for('list_books') }}"> LISTAR LIVROS </a>  |   <a href="{{url_for('logout')}}">LOGOUT</a>
+</body>
+</html>
